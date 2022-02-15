@@ -1,9 +1,17 @@
 # Green-Knight
 A game about a little Green Knight
-<hr />
 <h2> Game Info </h2>
-This game is about blah, blah, blah...
+<p>
+  Uses the pyxel game engine for python. https://github.com/kitao/pyxel <br>
+</p>
+<p>
+  This game is about blah, blah, blah...
+</p>
 
 <h2> File info </h2>
-Main.py is the script that runs the game.
-The .pyxres is for the pyxel recource editor. It includes all tiles and sprites for the game.
+<p>
+Main.py is the script that runs the game. 
+</p>
+<p>  
+  The .pyxres is for the pyxel recource editor. It includes all tiles and sprites for the game.
+</p>
