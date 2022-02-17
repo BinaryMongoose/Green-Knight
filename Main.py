@@ -20,15 +20,11 @@ class App():
 
     def DrawMap(self) :
         # Drawing the tileset
-        pyxel.cls(0)
         pyxel.bltm(0, 0, 0, 0, 0, 1200, 94)
-
-        # Drawing text
-        pyxel.text(2, 66, "Player Y: " + str(player.y), 7)
-        pyxel.text(2, 73, "Player X: " + str(player.x), 7)
 
     # Draws all objects listed every frame
     def Draw(self) :
+        
         self.DrawMap()
         
         # Draws player every frame.

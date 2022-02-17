@@ -35,11 +35,14 @@ class Player() :
             self.dx = 1
             self.Move()
         if pyxel.btn(pyxel.KEY_UP) :
-            self.dy = 1
-            self.Move()
-        if pyxel.btn(pyxel.KEY_DOWN) :
             self.dy = -1
             self.Move()
+        if pyxel.btn(pyxel.KEY_DOWN) :
+            self.dy = 1
+            self.Move()
+        else :
+            self.dx = 0
+            self.dy = 0
         
     def Animate(self) :
         pass
