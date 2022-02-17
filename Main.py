@@ -4,7 +4,7 @@ from player import Player
 class App():
     def __init__(self):
         # Initiate Window
-        pyxel.init(128, 88, "Ya Ya's Game")
+        pyxel.init(128, 88, "Green Knight")
 
         pyxel.load("greenknight.pyxres", True, True, False, False)
 
@@ -15,8 +15,8 @@ class App():
         pyxel.run(self.Update, self.Draw)
 
     def Update(self):
-        # Calls everythin in update player every frame
-        player.Update()
+        
+        player.UpdateControls()
 
     def DrawMap(self) :
         # Drawing the tileset
