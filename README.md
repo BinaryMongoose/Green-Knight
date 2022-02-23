@@ -13,5 +13,5 @@ A game about a little Green Knight
 Main.py is the script that runs the game. 
 </p>
 <p>  
-  The .pyxres is for the pyxel recource editor. It includes all tiles and sprites for the game.
+  The .pyxres is for the pyxel resource editor. It includes all tiles and sprites for the game.
 </p>
