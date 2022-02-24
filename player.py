@@ -1,48 +1,67 @@
 import pyxel
 
-class Player() :
-    def __init__(self, x, y) :
+
+class Player:
+    def __init__(self, x, y):
         # Player variables
         self.x = x
-        self.y = x
+        self.y = y
 
-        self.dx = 0
+        self.dx = 1.0
         self.dy = 0
+        self.speed = 0.8
+
+        self.playerWidth = 8
+
+        # Keyboard Variables
+        self.leftDown = False
+        self.rightDown = False
+        self.haveJumped = False
 
         self.direction = 1
 
-        pyxel.load("greenknight.pyxres", True, True, False, False)
+        # Buttons
+        self.right = pyxel.KEY_D
+        self.left = pyxel.KEY_A
+        self.jump = pyxel.KEY_SPACE
+
+        pyxel.load("greenknight.pyxres")
 
         '''
         pyxel.blt(self.x, self.y, 1, 8, 0, 8, 16, 0 )
         pyxel.blt(self.x, self.y, 1, 8, 0, 8, 16, 0 )
         pyxel.blt(self.x, self.y, 1, 8, 0, 8, 16, 0 )
         '''
-        
-    # Draws the player 
+
     def Draw(self):
-        pyxel.blt(self.x, self.y, 1, 8, 0, 8, 16, 0 )
+        pyxel.blt(self.x, self.y, 1, 8, 0, 8, 16, 0)
 
     def Move(self):
-        self.x += self.dx
-        self.y += self.dy
-            
+        if self.leftDown:
+            if self.dx > 0.0:
+                self.dx = self.speed
+                self.dx = -self.dx
+            if self.x > 0:
+                self.x += self.dx
+
+        if self.rightDown:
+            if self.dx < 0.0:
+                self.dx = self.speed
+            if self.x + self.playerWidth < 128:
+                self.x += self.dx
+
     def UpdateControls(self):
-        if pyxel.btn(pyxel.KEY_LEFT) :
-            self.dx = -1
-            self.Move()
-        if pyxel.btn(pyxel.KEY_RIGHT) :
-            self.dx = 1
-            self.Move()
-        if pyxel.btn(pyxel.KEY_UP) :
-            self.dy = -1
-            self.Move()
-        if pyxel.btn(pyxel.KEY_DOWN) :
-            self.dy = 1
-            self.Move()
-        else :
-            self.dx = 0
-            self.dy = 0
-        
-    def Animate(self) :
-        pass
+
+        if pyxel.btnp(self.left):
+            self.leftDown = True
+        if pyxel.btnp(self.right):
+            self.rightDown = True
+
+        if pyxel.btnr(self.left):
+            self.leftDown = False
+            self.dx = self.speed
+        if pyxel.btnr(self.right):
+            self.rightDown = False
+            self.dx = self.speed
+
+        self.Move()
