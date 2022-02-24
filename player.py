@@ -34,10 +34,13 @@ class Player:
         '''
 
     def Draw(self):
-        pyxel.blt(self.x, self.y, 1, 8, 0, 8, 16, 0)
+        u = (pyxel.frame_count // 8 % 3 + 1) * 8 if self.leftDown or self.rightDown else 8
+        v = 8 if self.direction == 1 else -8
+        pyxel.blt(self.x, self.y, 1, u, 0, v, 16, 0)
 
     def Move(self):
         if self.leftDown:
+            self.direction = -1
             if self.dx > 0.0:
                 self.dx = self.speed
                 self.dx = -self.dx
@@ -45,6 +48,7 @@ class Player:
                 self.x += self.dx
 
         if self.rightDown:
+            self.direction = 1
             if self.dx < 0.0:
                 self.dx = self.speed
             if self.x + self.playerWidth < 128:
