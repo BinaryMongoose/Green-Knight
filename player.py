@@ -1,6 +1,5 @@
 import pyxel
 
-
 class Player:
     def __init__(self, x, y):
         # Player variables
@@ -27,12 +26,6 @@ class Player:
 
         pyxel.load("greenknight.pyxres")
 
-        '''
-        pyxel.blt(self.x, self.y, 1, 8, 0, 8, 16, 0 )
-        pyxel.blt(self.x, self.y, 1, 8, 0, 8, 16, 0 )
-        pyxel.blt(self.x, self.y, 1, 8, 0, 8, 16, 0 )
-        '''
-
     def Draw(self):
         u = (pyxel.frame_count // 8 % 3 + 1) * 8 if self.leftDown or self.rightDown else 8
         v = 8 if self.direction == 1 else -8
@@ -54,8 +47,10 @@ class Player:
             if self.x + self.playerWidth < 128:
                 self.x += self.dx
 
-    def UpdateControls(self):
+        if self.dy > 0.0:
+            pass
 
+    def UpdateControls(self):
         if pyxel.btnp(self.left):
             self.leftDown = True
         if pyxel.btnp(self.right):

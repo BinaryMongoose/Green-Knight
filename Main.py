@@ -1,11 +1,40 @@
 import pyxel
 from player import Player
 
+FLOOR_TILE = (5, 0)
+TORCH_TILE = (3, 0)
+FLOOR_TILE_BOX = (5, 1)
+
+TORCH_TILES = [(1, 0), (2, 0), (3, 0)]
+
+COLLIDE_X = 4
+
+collided = False
+
+
+def getTile(x, y):
+    return pyxel.tilemap(0).pget(x, y)
+
+
+def detectTile():
+    for currentX in range(0, 16):
+        for currentY in range(0, 10):
+            currentTile = getTile(currentX, currentY)
+
+            if currentTile[0] >= COLLIDE_X:
+                pyxel.tilemap(0).pset(currentX, currentY, FLOOR_TILE_BOX)
+
+            if currentTile in TORCH_TILES:
+                u = ((pyxel.frame_count // 7 % 3) + 1) * 1
+                drawTile = (u, 0)
+                pyxel.tilemap(0).pset(currentX, currentY, drawTile)
+
 
 # noinspection PyGlobalUndefined
 class App:
     def __init__(self):
         # Initiate Window
+        # noinspection PyArgumentList
         pyxel.init(128, 88, "Green Knight")
 
         pyxel.load("greenknight.pyxres")
@@ -19,24 +48,20 @@ class App:
     @staticmethod
     def Update():
         player.UpdateControls()
+        detectTile()
 
     @staticmethod
     def DrawMap():
         # Drawing the tile-set
         pyxel.bltm(0, 0, 0, 0, 0, 1200, 94)
+        detectTile()
 
     # Draws all objects listed every frame
     def Draw(self):
         self.DrawMap()
-
-        # Draws player every frame.
         player.Draw()
 
-        pyxel.text(5, 70, str(player.leftDown), 7)
-        pyxel.text(5, 80, str(player.rightDown), 7)
-
-        pyxel.text(30, 70, str(player.dy), 7)
-        pyxel.text(30, 80, str(player.dx), 7)
+        # pyxel.text(5, 70, , 7)
 
 
 App()
