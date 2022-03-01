@@ -11,16 +11,15 @@ COLLIDE_X = 5
 
 
 def getTile(x, y):
+    """ Gets a tile from the displayed tile-map and returns the tile's x and y from the image bank """
     return pyxel.tilemap(0).pget(x, y)
 
 
 def updateMap():
+    """ Finds specific tiles off the map and animates the tiles """
     for currentX in range(0, 16):
         for currentY in range(0, 10):
             currentTile = getTile(currentX, currentY)
-
-            # if currentTile[0] >= COLLIDE_X:
-            #     pyxel.tilemap(0).pset(currentX, currentY, FLOOR_TILE_BOX)
 
             if currentTile in TORCH_TILES:
                 u = ((pyxel.frame_count // 6 % 4) + 1) * 1
@@ -30,8 +29,9 @@ def updateMap():
 
 # noinspection PyGlobalUndefined
 class App:
+    """ THe main game """
     def __init__(self):
-        # Initiate Window
+        """ Contains all code for the startup of the game """
         # noinspection PyArgumentList
         pyxel.init(128, 88, "Green Knight")
 
@@ -45,16 +45,17 @@ class App:
 
     @staticmethod
     def Update():
+        """ Updates everything listed every frame, including input """
         player.UpdateControls()
 
     @staticmethod
     def DrawMap():
-        # Drawing the tile-set
+        """ Draws the tile-map """
         pyxel.bltm(0, 0, 0, 0, 0, 1200, 94)
         updateMap()
 
-    # Draws all objects listed every frame
     def Draw(self):
+        """ Draws everything listed every frame """
         self.DrawMap()
         player.Draw()
 
