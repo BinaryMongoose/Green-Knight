@@ -35,7 +35,7 @@ class App:
         # noinspection PyArgumentList
         pyxel.init(128, 88, "Green Knight")
 
-        pyxel.load("greenknight.pyxres")
+        pyxel.load("../Assets/greenknight.pyxres")
 
         global player
         player = Player(10, 34)
