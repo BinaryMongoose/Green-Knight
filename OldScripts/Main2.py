@@ -42,9 +42,9 @@ class App:
         # Run Application
         pyx.run(self.Update, self.Draw)
 
-    def Update():
+    def Update(self):
         """ Updates everything listed every frame, including input """
         player.UpdateControls()
 
-    def DrawMap():
+    def DrawMap(self):
         """ Draws the tile-map """
